@@ -1,0 +1,166 @@
+﻿<Page
+    x:Class="WpfStroopTestSuite.Pages.LandingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfStroopTestSuite.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="LandingPage"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockWhite}" />
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelWhite}" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid
+            Margin="0"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label
+                x:Name="TitleLabel"
+                Grid.Row="0"
+                Margin="0,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Title"
+                FontSize="{DynamicResource TitleFontSize}"
+                FontWeight="Bold" />
+            <StackPanel
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <TextBlock
+                    x:Name="DescriptionTextBlock"
+                    Grid.Row="1"
+                    Margin="100,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="{DynamicResource BodyFontSize}"
+                    FontWeight="Bold"
+                    Text="Description"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
+                <Grid
+                    x:Name="Step1InstructionContainer"
+                    Margin="100,10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Rectangle
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Width="150"
+                        Height="60"
+                        Margin="10"
+                        Fill="Red" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5,0,10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Press R because the color is Red"
+                        FontSize="{DynamicResource BodyFontSize}"
+                        FontWeight="Bold" />
+                    <Rectangle
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Width="150"
+                        Height="60"
+                        Margin="10"
+                        Fill="Green" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5,0,10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Press G because the color is Green"
+                        FontSize="{DynamicResource BodyFontSize}"
+                        FontWeight="Bold" />
+                </Grid>
+                <Grid
+                    x:Name="Step2InstructionContainer"
+                    Margin="100,10"
+                    Visibility="Collapsed"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="GREEN"
+                        FontSize="{DynamicResource MaterialFontSize}"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource ColorRed}" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="5,0,10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Press R because the color is Red"
+                        FontSize="{DynamicResource BodyFontSize}"
+                        FontWeight="Bold" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Content="BLUE"
+                        FontSize="{DynamicResource MaterialFontSize}"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource ColorGreen}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5,0,10,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Content="Press G because the color is Green"
+                        FontSize="{DynamicResource BodyFontSize}"
+                        FontWeight="Bold" />
+                </Grid>
+            </StackPanel>
+            <Label
+                x:Name="NextLabel"
+                Grid.Row="2"
+                Margin="0,20"
+                Padding="20,5,20,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Next"
+                FontSize="{DynamicResource BodyFontSize}"
+                FontWeight="Bold" />
+        </Grid>
+    </Grid>
+</Page>

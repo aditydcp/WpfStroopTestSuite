@@ -5,6 +5,46 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <StartupObject>WpfStroopTestSuite.App</StartupObject>
+    <ApplicationIcon>Resources\Icons\Icon-App.ico</ApplicationIcon>
+    <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\Icon-Cancel-120.png" />
+    <None Remove="Resources\Icons\Icon-Cancel-240.png" />
+    <None Remove="Resources\Icons\Icon-Cancel-480.png" />
+    <None Remove="Resources\Icons\Icon-Cancel-60.png" />
+    <None Remove="Resources\Icons\Icon-Cancel-90.png" />
+    <None Remove="Resources\Icons\Icon-Cancel-30.png" />
+    <None Remove="Resources\Icons\Icon-Play-30.png" />
+    <None Remove="Resources\Icons\Icon-Play-60.png" />
+    <None Remove="Resources\Icons\Icon-Play-90.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\Icon-App.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Icon-Cancel-120.png" />
+    <Resource Include="Resources\Icons\Icon-Cancel-240.png" />
+    <Resource Include="Resources\Icons\Icon-Cancel-480.png" />
+    <Resource Include="Resources\Icons\Icon-Cancel-60.png" />
+    <Resource Include="Resources\Icons\Icon-Cancel-90.png" />
+    <Resource Include="Resources\Icons\Icon-Cancel-30.png" />
+    <Resource Include="Resources\Icons\Icon-Play-30.png" />
+    <Resource Include="Resources\Icons\Icon-Play-60.png" />
+    <Resource Include="Resources\Icons\Icon-Play-90.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Resources\Materials\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="30.0.1" />
+  </ItemGroup>
 
 </Project>

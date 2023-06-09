@@ -1,12 +1,42 @@
-﻿<Window x:Class="WpfStroopTestSuite.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfStroopTestSuite"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+﻿<Window
+    x:Class="WpfStroopTestSuite.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfStroopTestSuite"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="920"
+    Height="600"
+    PreviewKeyDown="WindowOnPreviewKeyDown"
+    PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+    SizeChanged="OnWindowSizeChanged"
+    WindowState="Maximized"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid Background="Black" SizeChanged="OnWindowSizeChanged">
+        <Frame
+            x:Name="MainFrame"
+            Loaded="OnMainFrameLoaded"
+            MouseDoubleClick="MainFrame_MouseDoubleClick"
+            NavigationUIVisibility="Hidden"
+            SizeChanged="OnWindowSizeChanged" />
+        <StackPanel
+            x:Name="DebugContainer"
+            Orientation="Vertical"
+            Visibility="Collapsed">
+            <Label
+                x:Name="ViewportSizeLabel"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="0x0" />
+            <TextBlock
+                x:Name="ConsoleText"
+                Margin="5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Text="Console" />
+        </StackPanel>
 
     </Grid>
 </Window>
