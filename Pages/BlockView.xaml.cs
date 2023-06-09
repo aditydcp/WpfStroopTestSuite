@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfStroopTestSuite.Models;
 
 namespace WpfStroopTestSuite.Pages
 {
@@ -65,6 +66,36 @@ namespace WpfStroopTestSuite.Pages
                 //    GreenSquare.Visibility = Visibility.Collapsed;
                 //}
             }
+        }
+
+        internal void FinishBlock()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SetBlockTimerText(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SetTimerText(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SetTrialLabel(Trial trial)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void ShowFeedback(bool v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void ShowTrial(bool v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

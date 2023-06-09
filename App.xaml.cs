@@ -146,7 +146,7 @@ namespace WpfStroopTestSuite
             int.Parse(ConfigurationManager.AppSettings.Get("BlockDurationInSeconds"));
 
         /// <summary>
-        /// Duration for the Trial block (introductory block) in seconds.
+        /// Duration for the First block (introductory block) in seconds.
         /// </summary>
         public static int IntroDuration { get; } =
             int.Parse(ConfigurationManager.AppSettings.Get("IntroDurationInSeconds"));
@@ -156,6 +156,12 @@ namespace WpfStroopTestSuite
         /// </summary>
         public static int FeedbackDuration { get; } =
             int.Parse(ConfigurationManager.AppSettings.Get("FeedbackDurationInMs"));
+
+        /// <summary>
+        /// Wait between feedback state and the next trial in ms.
+        /// </summary>
+        public static int TrialIntervalDuration { get; } =
+            int.Parse(ConfigurationManager.AppSettings.Get("TrialIntervalDurationInMs"));
         #endregion
 
         public static T? FindParentOfType<T>(DependencyObject child) where T : DependencyObject
