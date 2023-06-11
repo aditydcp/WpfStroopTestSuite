@@ -30,19 +30,19 @@ namespace WpfStroopTestSuite
         {
             InitializeComponent();
 
-            //try
-            //{
-            //    _hookID = InterceptKeys.SetHook(_proc);
-            //}
-            //catch
-            //{
-            //    DetachKeyboardHook();
-            //}
+            try
+            {
+                _hookID = InterceptKeys.SetHook(_proc);
+            }
+            catch
+            {
+                DetachKeyboardHook();
+            }
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            //DetachKeyboardHook();
+            DetachKeyboardHook();
             base.OnClosing(e);
         }
 
@@ -62,6 +62,7 @@ namespace WpfStroopTestSuite
             if (e.Key == Key.Escape)
             {
                 //Close();
+                //Application.Current.Shutdown();
 
                 //if (MainFrame.Content.GetType() != typeof(LandingPage))
                 //{
@@ -74,10 +75,12 @@ namespace WpfStroopTestSuite
                 if (DebugContainer.Visibility == Visibility.Visible) { DebugContainer.Visibility = Visibility.Collapsed; }
                 else if (DebugContainer.Visibility == Visibility.Collapsed) { DebugContainer.Visibility = Visibility.Visible; }
             }
-            
-            // call page's preview key down method
+
+            // call page-specific preview key down method
             IPagePreviewKey? page = MainFrame.Content as IPagePreviewKey;
             page?.OnPreviewKeyDown(sender, e);
+
+            SetConsoleText();
         }
 
         /// <summary>

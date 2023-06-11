@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <SolidColorBrush x:Key="ButtonColorPrimary" Color="GhostWhite" />
             <SolidColorBrush x:Key="TextColorPrimary" Color="White" />
+            <SolidColorBrush x:Key="TextColorSecondary" Color="Black" />
             <SolidColorBrush x:Key="ColorRed" Color="Red" />
             <SolidColorBrush x:Key="ColorGreen" Color="LimeGreen" />
             <SolidColorBrush x:Key="ColorBlue" Color="DodgerBlue" />

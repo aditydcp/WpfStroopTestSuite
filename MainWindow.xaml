@@ -29,14 +29,15 @@
                 x:Name="ViewportSizeLabel"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Content="0x0" />
+                Content="0x0"
+                Foreground="{StaticResource TextColorPrimary}" />
             <TextBlock
                 x:Name="ConsoleText"
                 Margin="5,5"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
+                Foreground="{StaticResource TextColorPrimary}"
                 Text="Console" />
         </StackPanel>
-
     </Grid>
 </Window>

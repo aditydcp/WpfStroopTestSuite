@@ -30,8 +30,8 @@ namespace WpfStroopTestSuite
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            //MainWindow = new SubjectForm();
-            MainWindow = new MainWindow()
+            MainWindow = new SubjectForm();
+            //MainWindow = new MainWindow()
             //{
             //    DataContext = new MainController()
             //};
@@ -56,7 +56,7 @@ namespace WpfStroopTestSuite
         /// </summary>
         public static void SaveSubjectData()
         {
-            string path = ConfigurationManager.AppSettings.Get("RunDataPath") + "SubjectRecords.csv";
+            string path = ConfigurationManager.AppSettings.Get("RunDataPath") + "SubjectRecords_Stroop.csv";
             //var hollow = new { something = string.Empty }; // needed to make extra space in the file
             List<RecordSubject> subject = new()
             {
@@ -120,7 +120,7 @@ namespace WpfStroopTestSuite
             }
 
             var path = ConfigurationManager.AppSettings.Get("RunDataPath");
-            using var writer = new StreamWriter(path + filename + ".csv");
+            using var writer = new StreamWriter(path + filename + "_Stroop.csv");
             using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture);
             csv.WriteRecords(records);
         }
