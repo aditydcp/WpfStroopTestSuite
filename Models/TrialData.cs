@@ -23,7 +23,7 @@ namespace WpfStroopTestSuite.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public Trial Trial { get; set; }
-        public Color UserAnswer { get; set; }
+        public string UserAnswer { get; set; }
 
         #region Constructors
         /// <summary>
@@ -32,6 +32,7 @@ namespace WpfStroopTestSuite.Models
         public TrialData()
         {
             Trial = new();
+            UserAnswer = string.Empty;
         }
 
         /// <summary>
@@ -45,13 +46,14 @@ namespace WpfStroopTestSuite.Models
             StartScore = startingScore;
             StartTime = DateTime.Now;
             Trial = new();
+            UserAnswer = string.Empty;
         }
 
         /// <summary>
         /// Complete constructor without reactionTime parameter.
         /// This will automatically calculate the <see cref="TrialData.ReactionTime"/>.
         /// </summary>
-        public TrialData(Result result, int startScore, int endScore, DateTime startTime, DateTime endTime, Trial trial, Color answer)
+        public TrialData(Result result, int startScore, int endScore, DateTime startTime, DateTime endTime, Trial trial, string answer)
         {
             Result = result;
             StartScore = startScore;
@@ -67,7 +69,7 @@ namespace WpfStroopTestSuite.Models
         /// Complete constructor without reactionTime and endScore parameter.
         /// This will automatically calculate the <see cref="TrialData.ReactionTime"/> and <see cref="TrialData.EndScore"/>.
         /// </summary>
-        public TrialData(Result result, int startScore, DateTime startTime, DateTime endTime, Trial trial, Color answer)
+        public TrialData(Result result, int startScore, DateTime startTime, DateTime endTime, Trial trial, string answer)
         {
             Result = result;
             StartScore = startScore;
@@ -86,7 +88,7 @@ namespace WpfStroopTestSuite.Models
         /// <summary>
         /// Complete constructor
         /// </summary>
-        public TrialData(Result result, long reactionTime, int startScore, int endScore, DateTime startTime, DateTime endTime, Trial trial, Color answer)
+        public TrialData(Result result, long reactionTime, int startScore, int endScore, DateTime startTime, DateTime endTime, Trial trial, string answer)
         {
             Result = result;
             ReactionTime = reactionTime;
@@ -110,7 +112,7 @@ namespace WpfStroopTestSuite.Models
         /// <param name="endTime">The DateTime when the answer is submitted</param>
         /// <param name="trial">The trial in <seealso cref="Models.Trial"/> type</param>
         /// <param name="answer">The answer submitted by user</param>
-        public void EnterData(Result result, int endScore, DateTime endTime, Trial trial, Color answer)
+        public void EnterData(Result result, int endScore, DateTime endTime, Trial trial, string answer)
         {
             Result = result;
             EndTime = endTime;
@@ -131,7 +133,7 @@ namespace WpfStroopTestSuite.Models
         /// <param name="endTime">The DateTime when the answer is submitted</param>
         /// <param name="trial">The trial in <seealso cref="Models.Trial"/> type</param>
         /// <param name="answer">The answer submitted by user</param>
-        public void EnterData(Result result, DateTime endTime, Trial trial, Color answer)
+        public void EnterData(Result result, DateTime endTime, Trial trial, string answer)
         {
             Result = result;
             EndTime = endTime;
@@ -167,7 +169,7 @@ namespace WpfStroopTestSuite.Models
                 "StartTime: " + StartTime + "\n" +
                 "EndTime: " + EndTime + "\n" +
                 "Trial:\n" + Trial.ToConsoleString() + "\n" +
-                "User Inputted Answer: " + UserAnswer.ToMyString();
+                "User Inputted Answer: " + UserAnswer;
         }
     }
 }

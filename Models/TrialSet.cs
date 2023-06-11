@@ -12,7 +12,7 @@ namespace WpfStroopTestSuite.Models
 
         // ensure no 3 consecutive trials are the same
         private static readonly int maxStreak = 3;
-        private int consecutiveStreak = 0;
+        private int consecutiveStreak = 1;
         private int lastTrialIndex = -1;
 
         private readonly Random random = new();
@@ -38,7 +38,7 @@ namespace WpfStroopTestSuite.Models
                 index = random.Next(0, Trials.Count);
 
                 if (index == lastTrialIndex) consecutiveStreak++;
-                else consecutiveStreak = 0;
+                else consecutiveStreak = 1;
 
                 if (consecutiveStreak < maxStreak) search = false;
             }
