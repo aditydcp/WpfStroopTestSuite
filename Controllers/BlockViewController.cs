@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
 using WpfStroopTestSuite.Models;
 using WpfStroopTestSuite.Pages;
 using WpfStroopTestSuite.Repositories;
+using Type = WpfStroopTestSuite.Models.Type;
 
 namespace WpfStroopTestSuite.Controllers
 {
@@ -35,28 +37,28 @@ namespace WpfStroopTestSuite.Controllers
         private TrialData trialData;
         private int score;
         private Trial trial;
-        private TrialSet activeTrialSet;
+        private readonly TrialSet activeTrialSet;
         /// <summary>
         /// Local reference to this current block's duration
         /// </summary>
         private readonly int blockDuration;
 
-        public void SubmitAnswer(Color answer)
+        public void SubmitAnswer(Key? keyInput)
         {
+            string answer = InterpretAnswerKey(keyInput);
             Result result = trial.GetResult(answer);
-            switch (result)
-            {
-                case Result.Correct:
-                    score++;
-                    break;
-                default:
-                    score--;
-                    break;
-            }
+            if (result == Result.Correct) score++;
 
             SaveData(result, score, answer);
             
-            EnterFeedbackState();
+            EnterFeedbackState(result);
+        }
+
+        public void StartBlock()
+        {
+            StartBlockTimer();
+            StartTrialTimer();
+            view.ShowTrial(true);
         }
 
         private void FinishBlock()
@@ -68,7 +70,7 @@ namespace WpfStroopTestSuite.Controllers
             view.FinishBlock();
         }
 
-        private void SaveData(Result result, int score, Color answer)
+        private void SaveData(Result result, int score, string answer)
         {
             // complete trial data
             trialData.EnterData(result, score, DateTime.Now, trial, answer);
@@ -86,6 +88,7 @@ namespace WpfStroopTestSuite.Controllers
 
             // setup new question environment
             //SetActiveTrialSet(); only need to set trialset once
+            State = States.Ready;
             trial = GetRandomTrial();
             ResetTrialTimer();
             StartBlockTimer();
@@ -111,24 +114,56 @@ namespace WpfStroopTestSuite.Controllers
 
         public void ControlView()
         {
-            view.SetTrialLabel(trial);
-            
-            view.SetTimerText(GetTimeString(App.TrialDuration - trialTimerInSeconds));
+            switch (State)
+            {
+                case States.Ready:
+                    view.ShowTrial(true);
+                    view.ShowFeedback(false);
+                    view.ShowTimer(true);
+                    break;
 
-            view.SetBlockTimerText(GetTimeString(blockDuration - blockTimerInSeconds));
+                case States.Feedback:
+                    view.ShowTrial(false);
+                    view.ShowFeedback(true);
+                    view.ShowTimer(true);
+                    break;
+
+                case States.Wait:
+                    view.ShowTrial(false);
+                    view.ShowFeedback(false);
+                    view.ShowTimer(false);
+                    break;
+            }
+            if (State == States.Ready)
+            {
+                view.SetTrialLabel(trial.Color, trial.Type);
+
+                view.SetTimerText(GetTimeString(App.TrialDuration - trialTimerInSeconds));
+
+                view.SetBlockTimerText(GetTimeString(blockDuration - blockTimerInSeconds));
+            }
         }
 
         #region State Management
-        private void EnterFeedbackState()
+        /// <summary>
+        /// Checks whether <see cref="BlockViewController.State"/> is currently <seealso cref="States.Ready"/>
+        /// </summary>
+        /// <returns></returns>
+        public bool IsReady()
+        {
+            if (State == States.Ready) return true;
+            return false;
+        }
+
+        private void EnterFeedbackState(Result result)
         {
             // stops all other timer
-            //StopBlockTimer();
             StopTrialTimer();
-            view.ShowTrial(false);
 
             // start feedback timer
             State = States.Feedback;
-            view.ShowFeedback(true);
+            view.SetFeedbackLabel(result);
+            ControlView();
             StartFeedbackTimer();
         }
 
@@ -138,7 +173,7 @@ namespace WpfStroopTestSuite.Controllers
             State = States.Wait;
             StopFeedbackTimer();
             StartIntervalTimer();
-            view.ShowFeedback(false);
+            ControlView();
         }
 
         // Enter ready state
@@ -150,7 +185,6 @@ namespace WpfStroopTestSuite.Controllers
 
             //start a new trial
             StartNewTrial();
-            view.ShowTrial(true);
         }
         #endregion
 
@@ -193,7 +227,7 @@ namespace WpfStroopTestSuite.Controllers
         {
             trialTimerInSeconds++;
             view.SetTimerText(GetTimeString((App.TrialDuration - trialTimerInSeconds)));
-            if (trialTimerInSeconds >= App.TrialDuration) { SubmitAnswer(Color.None); }
+            if (trialTimerInSeconds >= App.TrialDuration) { SubmitAnswer(null); }
         }
 
         private void FeedbackTimerTicks(object? sender, EventArgs e)
@@ -212,6 +246,16 @@ namespace WpfStroopTestSuite.Controllers
         {
             return ((timeInSeconds) / 60 / 10).ToString() + ((timeInSeconds) / 60 % 10).ToString() +
                 ":" + ((timeInSeconds) % 60 / 10).ToString() + ((timeInSeconds) % 60 % 10).ToString();
+        }
+
+        private static string InterpretAnswerKey(Key? key)
+        {
+            if (key == null) return "None";
+            if (key == Key.R) return "Red";
+            if (key == Key.G) return "Green";
+            if (key == Key.B) return "Blue";
+            if (key == Key.Y) return "Yellow";
+            return key.ToString();
         }
 
         public BlockViewController(BlockView view)
