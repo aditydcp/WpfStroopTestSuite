@@ -10,8 +10,8 @@
     d:DesignWidth="800"
     mc:Ignorable="d">
     <Page.Resources>
-        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockWhite}" />
-        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelWhite}" />
+        <Style BasedOn="{StaticResource TextBlockWhite}" TargetType="{x:Type TextBlock}" />
+        <Style BasedOn="{StaticResource LabelWhite}" TargetType="{x:Type Label}" />
     </Page.Resources>
 
     <Grid>
@@ -100,9 +100,9 @@
                 <Grid
                     x:Name="Step2InstructionContainer"
                     Margin="100,10"
-                    Visibility="Collapsed"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />

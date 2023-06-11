@@ -8,192 +8,246 @@
     Title="BlockView"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    Loaded="OnPageLoaded"
+    Unloaded="OnPageUnloaded"
     mc:Ignorable="d">
     <Page.Resources>
-        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource TextBlockWhite}" />
-        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelWhite}" />
+        <Style BasedOn="{StaticResource TextBlockWhite}" TargetType="{x:Type TextBlock}" />
+        <Style BasedOn="{StaticResource LabelWhite}" TargetType="{x:Type Label}" />
     </Page.Resources>
 
     <Grid>
-        <Label
-            x:Name="RedRed"
+        <StackPanel
+            Margin="100"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="RED"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorRed}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="RedGreen"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="GREEN"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorRed}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="RedBlue"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="BLUE"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorRed}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="RedYellow"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="YELLOW"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorRed}"
-            Visibility="Collapsed" />
-        
-        <Label
-            x:Name="GreenRed"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="RED"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorGreen}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="GreenGreen"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="GREEN"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorGreen}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="GreenBlue"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="BLUE"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorGreen}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="GreenYellow"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="YELLOW"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorGreen}"
-            Visibility="Collapsed" />
+            VerticalAlignment="Bottom"
+            Orientation="Vertical">
 
-        <Label
-            x:Name="BlueRed"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="RED"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorBlue}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="BlueGreen"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="GREEN"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorBlue}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="BlueBlue"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="BLUE"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorBlue}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="BlueYellow"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="YELLOW"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorBlue}"
-            Visibility="Collapsed" />
+            <TextBlock
+                x:Name="TimerLabel"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="{DynamicResource MaterialFontSize}"
+                Text="Timer" />
 
-        <Label
-            x:Name="YellowRed"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="RED"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorYellow}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="YellowGreen"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="GREEN"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorYellow}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="YellowBlue"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="BLUE"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorYellow}"
-            Visibility="Collapsed" />
-        <Label
-            x:Name="YellowYellow"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Content="YELLOW"
-            FontSize="{DynamicResource MaterialFocusFontSize}"
-            FontWeight="Bold"
-            Foreground="{StaticResource ColorYellow}"
-            Visibility="Collapsed" />
+            <TextBlock
+                x:Name="BlockTimerLabel"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="{DynamicResource MaterialFontSize}"
+                Text="BlockTimer"
+                Visibility="Collapsed" />
+        </StackPanel>
 
-        <Rectangle
-            x:Name="RedSquare"
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock
+                x:Name="FeedbackLabel"
+                Padding="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="LightGray"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource TextColorSecondary}"
+                Text="FEEDBACK"
+                Visibility="Collapsed" />
+        </Grid>
+
+        <Grid
+            x:Name="TrialContainer"
             HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Height="125"
-            Visibility="Collapsed"
-            Width="275"
-            Fill="{StaticResource ColorRed}" />
-        <Rectangle
-            x:Name="GreenSquare"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Height="125"
-            Visibility="Collapsed"
-            Width="275"
-            Fill="{StaticResource ColorGreen}" />
-        <Rectangle
-            x:Name="BlueSquare"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Height="125"
-            Visibility="Collapsed"
-            Width="275"
-            Fill="{StaticResource ColorBlue}" />
-        <Rectangle
-            x:Name="YellowSquare"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Height="125"
-            Visibility="Collapsed"
-            Width="275"
-            Fill="{StaticResource ColorYellow}" />
+            VerticalAlignment="Center">
+
+            <Label
+                x:Name="WordTrialLabel"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="RED"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorRed}"
+                Visibility="Collapsed" />
+
+            <!--<Label
+                x:Name="RedRed"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="RED"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorRed}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="RedGreen"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="GREEN"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorRed}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="RedBlue"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="BLUE"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorRed}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="RedYellow"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="YELLOW"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorRed}"
+                Visibility="Collapsed" />
+
+            <Label
+                x:Name="GreenRed"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="RED"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorGreen}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="GreenGreen"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="GREEN"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorGreen}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="GreenBlue"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="BLUE"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorGreen}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="GreenYellow"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="YELLOW"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorGreen}"
+                Visibility="Collapsed" />
+
+            <Label
+                x:Name="BlueRed"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="RED"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorBlue}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="BlueGreen"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="GREEN"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorBlue}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="BlueBlue"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="BLUE"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorBlue}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="BlueYellow"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="YELLOW"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorBlue}"
+                Visibility="Collapsed" />
+
+            <Label
+                x:Name="YellowRed"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="RED"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorYellow}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="YellowGreen"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="GREEN"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorYellow}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="YellowBlue"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="BLUE"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorYellow}"
+                Visibility="Collapsed" />
+            <Label
+                x:Name="YellowYellow"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="YELLOW"
+                FontSize="{DynamicResource MaterialFocusFontSize}"
+                FontWeight="Bold"
+                Foreground="{StaticResource ColorYellow}"
+                Visibility="Collapsed" />-->
+
+            <Rectangle
+                x:Name="RedSquare"
+                Width="275"
+                Height="125"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Fill="{StaticResource ColorRed}"
+                Visibility="Collapsed" />
+            <Rectangle
+                x:Name="GreenSquare"
+                Width="275"
+                Height="125"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Fill="{StaticResource ColorGreen}"
+                Visibility="Collapsed" />
+            <Rectangle
+                x:Name="BlueSquare"
+                Width="275"
+                Height="125"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Fill="{StaticResource ColorBlue}"
+                Visibility="Collapsed" />
+            <Rectangle
+                x:Name="YellowSquare"
+                Width="275"
+                Height="125"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Fill="{StaticResource ColorYellow}"
+                Visibility="Collapsed" />
+        </Grid>
     </Grid>
 </Page>
