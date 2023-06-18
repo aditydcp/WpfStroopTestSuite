@@ -12,13 +12,33 @@ namespace WpfStroopTestSuite.Models
         public string SubjectName { get; set; }
         public string SubjectId { get; set; }
         public string GroupId { get; set; }
+        /// <summary>
+        /// This property is in resolution of 100 nanoseconds.
+        /// See also <seealso cref="DateTime.Ticks"/>.
+        /// </summary>
+        public long CollectionStartTimeTicks { get; set; }
         public DateTime CollectionStartTime { get; set; }
+        /// <summary>
+        /// This property is in resolution of 100 nanoseconds.
+        /// See also <seealso cref="DateTime.Ticks"/>.
+        /// </summary>
+        public long CollectionEndTimeTicks { get; set; }
         public DateTime CollectionEndTime { get; set; }
         #endregion
 
         #region Block properties
         public int Block { get; set; }
+        /// <summary>
+        /// This property is in resolution of 100 nanoseconds.
+        /// See also <seealso cref="DateTime.Ticks"/>.
+        /// </summary>
+        public long BlockStartTimeTicks { get; set; }
         public DateTime BlockStartTime { get; set; }
+        /// <summary>
+        /// This property is in resolution of 100 nanoseconds.
+        /// See also <seealso cref="DateTime.Ticks"/>.
+        /// </summary>
+        public long BlockEndTimeTicks { get; set; }
         public DateTime BlockEndTime { get; set; }
         /// <summary>
         /// This property is in resolution of 100 nanoseconds.
@@ -41,7 +61,17 @@ namespace WpfStroopTestSuite.Models
         #endregion
 
         #region Trial properties
+        /// <summary>
+        /// This property is in resolution of 100 nanoseconds.
+        /// See also <seealso cref="DateTime.Ticks"/>.
+        /// </summary>
+        public long TrialStartTimeTicks { get; set; }
         public DateTime TrialStartTime { get; set; }
+        /// <summary>
+        /// This property is in resolution of 100 nanoseconds.
+        /// See also <seealso cref="DateTime.Ticks"/>.
+        /// </summary>
+        public long TrialEndTimeTicks { get; set; }
         public DateTime TrialEndTime { get; set; }
         /// <summary>
         /// This property is in resolution of 100 nanoseconds.
@@ -91,11 +121,15 @@ namespace WpfStroopTestSuite.Models
             SubjectId = subjectData.GetSubjectId();
             GroupId = subjectData.GetGroupId();
             CollectionStartTime = subjectData.CollectionStartTime;
+            CollectionStartTimeTicks = subjectData.CollectionStartTime.Ticks;
             CollectionEndTime = subjectData.CollectionEndTime;
+            CollectionEndTimeTicks = subjectData.CollectionEndTime.Ticks;
 
             Block = (int)blockData.Stage;
             BlockStartTime = blockData.StartTime;
+            BlockStartTimeTicks = blockData.StartTime.Ticks;
             BlockEndTime = blockData.EndTime;
+            BlockEndTimeTicks = blockData.EndTime.Ticks;
             BlockDuration = GetDurationInTicks(blockData.StartTime, blockData.EndTime);
             BlockFinalScore = blockData.Score;
             BlockTrialCount = blockData.TrialsCount;
@@ -104,7 +138,9 @@ namespace WpfStroopTestSuite.Models
             BlockMeanReactionTime = blockData.MeanReactionTime;
 
             TrialStartTime = trialData.StartTime;
+            TrialStartTimeTicks = trialData.StartTime.Ticks;
             TrialEndTime = trialData.EndTime;
+            TrialEndTimeTicks = trialData.EndTime.Ticks;
             ReactionTime = trialData.ReactionTime;
             Question = trialData.Trial.Type.ToString();
             Solution = trialData.Trial.Color.ToString();
@@ -151,19 +187,26 @@ namespace WpfStroopTestSuite.Models
             if (groupId == null) GroupId = string.Empty;
             else GroupId = groupId;
             CollectionStartTime = collectionStartTime;
+            CollectionStartTimeTicks = collectionStartTime.Ticks;
             CollectionEndTime = collectionEndTime;
+            CollectionEndTimeTicks = collectionEndTime.Ticks;
 
             Block = block;
             BlockStartTime = blockStartTime;
+            BlockStartTimeTicks = blockStartTime.Ticks;
             BlockEndTime = blockEndTime;
+            BlockEndTimeTicks = blockEndTime.Ticks;
             BlockDuration = blockDuration;
             BlockFinalScore = blockFinalScore;
             BlockTrialCount = blockTrialCount;
             BlockAccuracy = blockAccuracy;
             BlockMeanReactionTimeOnCorrectTrials = blockMeanReactionTimeOnCorrectTrials;
             BlockMeanReactionTime = blockMeanReactionTime;
+
             TrialStartTime = trialStartTime;
+            TrialStartTimeTicks = trialStartTime.Ticks;
             TrialEndTime = trialEndTime;
+            TrialEndTimeTicks = trialEndTime.Ticks;
             ReactionTime = reactionTime;
             Question = question;
             Solution = solution;
